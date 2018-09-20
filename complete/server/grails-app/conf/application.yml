@@ -111,6 +111,8 @@ environments:
                 jdbcInterceptors: ConnectionState
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
 ---
+#tag::grailsResourcesPattern[]
 grails:
     resources:
         pattern: /**
+#end::grailsResourcesPattern[]
