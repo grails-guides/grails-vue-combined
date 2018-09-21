@@ -18,3 +18,5 @@ To enable this open the `server` project's `build.gradle` file, and *delete* the
 ----
 apply plugin:"war"
 ----
+
+TIP: Leave the `apply plugin: "war"` line in `server/build.gradle` if you wish to generate a WAR file.
