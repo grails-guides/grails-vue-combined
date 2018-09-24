@@ -1,4 +1,6 @@
-Create a new `build.gradle` file (at the same level as `settings.gradle`), and add the following content:
+The initial folder contains a Grails application generated with the `vue` profile. The project is a https://guides.gradle.org/creating-multi-project-builds/[Gradle Multiproject build].
+
+Create a `build.gradle` file in the root project, at the same level as `settings.gradle`. Add the following content:
 
 [source,groovy]
 .build.gradle
