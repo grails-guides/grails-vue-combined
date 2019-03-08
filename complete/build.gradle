@@ -13,4 +13,4 @@ task assembleServerAndClient(type: Copy, dependsOn: ['copyClientResources', ':se
         logger.quiet "JAR/WAR generated at ${rootProject.buildDir}. It combines the server and client projects."
     }
 }
-task(":server:assemble").mustRunAfter(copyClientResources) // <4>
+// <4>
