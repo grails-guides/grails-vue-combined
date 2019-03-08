@@ -70,5 +70,3 @@ bootRun {
     String springProfilesActive = 'spring.profiles.active'
     systemProperty springProfilesActive, System.getProperty(springProfilesActive)
 }
-
-assemble.mustRunAfter(rootProject.copyClientResources)
