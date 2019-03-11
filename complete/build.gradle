@@ -22,4 +22,4 @@ task assembleServerAndClient(dependsOn: ['copyClientResources', ':server:assembl
     }
 }
 
-tasks.getByPath(':server:assemble').mustRunAfter(copyClientResources) // <4>
+task("server:assemble").mustRunAfter(copyClientResources) // <4>
