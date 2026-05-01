@@ -1,68 +1,67 @@
 <template>
   <div>
-    <div class="navbar navbar-default navbar-static-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/#">
-            <img src="../assets/images/grails.svg" alt="Grails Logo"/>
 
-          </a>
-        </div>
-        <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
-          <ul class="nav navbar-nav navbar-right">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-static-top" role="navigation">
+      <a class="navbar-brand" href="/#"><img src="../assets/images/grails.svg" alt="Grails Logo"/></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
+              aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-            <dropdown tag="li">
-              <btn type="primary" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                   aria-expanded="false">Application Status <span class="caret"></span></btn>
-              <template slot="dropdown">
-                <li v-if="serverInfo"><a href="#">Environment: {{serverInfo.environment}}</a></li>
-                <li v-if="serverInfo"><a href="#">App profile: {{serverInfo.appprofile}}</a></li>
+      <div class="collapse navbar-collapse" aria-expanded="false" style="height: 0.8px;" id="navbarContent">
+        <ul class="nav navbar-nav ml-auto">
 
-                <li role="separator" class="divider"></li>
-                <li v-if="serverInfo"><a href="#">Grails version: {{serverInfo.grailsversion}}</a></li>
-                <li v-if="serverInfo"><a href="#">Groovy version: {{serverInfo.groovyversion}}</a></li>
-                <li v-if="serverInfo"><a href="#">JVM version: {{serverInfo.jvmversion}}</a></li>
-                <li role="separator" class="divider"></li>
-                <li v-if="serverInfo"><a href="#">Reloading active: {{serverInfo.reloadingagentenabled ? 'true' :
-                  'false' }}</a></li>
-              </template>
-            </dropdown>
-            <dropdown tag="li">
-              <btn type="primary" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                   aria-expanded="false">Artefacts <span class="caret"></span></btn>
-              <template slot="dropdown" v-if="serverInfo">
-                <li v-if="serverInfo.artefacts"><a href="#">Controllers: {{serverInfo.artefacts.controllers}}</a></li>
-                <li v-if="serverInfo.artefacts"><a href="#">Domains: {{serverInfo.artefacts.domains}}</a></li>
-                <li v-if="serverInfo.artefacts"><a href="#">Services: {{serverInfo.artefacts.services}}</a></li>
-              </template>
-            </dropdown>
-            <dropdown tag="li">
-              <btn type="primary" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                   aria-expanded="false">Installed Plugins <span class="caret"></span></btn>
-              <template slot="dropdown" v-if="serverInfo">
-                <li v-for="plugin in serverInfo.plugins" :key="plugin.name">
-                  <a href="#">{{ plugin.name }} - {{ plugin.version }}</a>
-                </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="true">Application Status <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li v-if="serverInfo" class="dropdown-item"><a href="#">Environment: {{serverInfo.environment}}</a></li>
+              <li v-if="serverInfo" class="dropdown-item"><a href="#">App profile: {{serverInfo.appprofile}}</a></li>
 
-              </template>
-            </dropdown>
+              <li role="separator" class="divider dropdown-item"></li>
+              <li v-if="serverInfo" class="dropdown-item"><a href="#">Grails version: {{serverInfo.grailsversion}}</a>
+              </li>
+              <li v-if="serverInfo" class="dropdown-item"><a href="#">Groovy version: {{serverInfo.groovyversion}}</a>
+              </li>
+              <li v-if="serverInfo" class="dropdown-item"><a href="#">JVM version: {{serverInfo.jvmversion}}</a></li>
+              <li role="separator" class="divider dropdown-item"></li>
+              <li v-if="serverInfo" class="dropdown-item"><a href="#">Reloading active:
+                {{serverInfo.reloadingagentenabled ? 'true' :
+                'false' }}</a></li>
+            </ul>
+          </li>
 
-          </ul>
-        </div>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="true">Artefacts<span class="caret"></span></a>
+            <ul class="dropdown-menu" v-if="serverInfo">
+              <li v-if="serverInfo.artefacts"><a href="#">Controllers: {{serverInfo.artefacts.controllers}}</a></li>
+              <li v-if="serverInfo.artefacts"><a href="#">Domains: {{serverInfo.artefacts.domains}}</a></li>
+              <li v-if="serverInfo.artefacts"><a href="#">Services: {{serverInfo.artefacts.services}}</a></li>
+            </ul>
+
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="true">Installed Plugins <span class="caret"></span></a>
+            <ul class="dropdown-menu" v-if="serverInfo">
+              <li v-for="plugin in serverInfo.plugins" :key="plugin.name">
+                <a href="#">{{ plugin.name }} - {{ plugin.version }}</a>
+              </li>
+
+            </ul>
+          </li>
+
+        </ul>
       </div>
-    </div>
+
+    </nav>
 
     <div class="svg" role="presentation">
       <div class="grails-logo-container">
         <img src="../assets/images/grails-cupsonly-logo-white.svg" class="grails-logo"/>
         <span class="plus-logo">+</span>
-        <img src="../assets/logo.png" class="hero-log"/>
+        <img src="../assets/logo.png" class="hero-logo"/>
       </div>
     </div>
 
@@ -80,16 +79,45 @@
 
         <div id="controllers" role="navigation">
           <h2>Available Controllers:</h2>
-          <ul v-if="serverInfo">
+          <ul v-if="serverInfo && serverInfo.controllers">
 
-            <li v-if="serverInfo.controllers" v-for="controller in serverInfo.controllers" :key="controller.name">
+            <li v-for="controller in serverInfo.controllers" :key="controller.name">
               <a :href="serverURL + '/' + controller.logicalPropertyName">{{controller.name }}</a></li>
           </ul>
         </div>
       </section>
     </div>
+    <div class="footer row" role="contentinfo">
+      <div class="col-md-4">
+        <a href="http://guides.grails.org" target="_blank">
+          <img src="../assets/images/advancedgrails.svg" alt="Grails Guides" class="float-left"/>
 
-    <div class="footer" role="contentinfo"></div>
+        </a>
+        <strong class="centered"><a href="http://guides.grails.org" target="_blank">Grails Guides</a></strong>
+        <p>Building your first Grails app? Looking to add security, or create a Single-Page-App? Check out the <a
+          href="http://guides.grails.org" target="_blank">Grails Guides</a> for step-by-step tutorials.</p>
+
+      </div>
+      <div class="col-md-4">
+        <a href="http://docs.grails.org" target="_blank">
+          <img src="../assets/images/documentation.svg" alt="Grails Documentation" class="float-left"/>
+        </a>
+        <strong class="centered"><a href="http://docs.grails.org" target="_blank">Documentation</a></strong>
+        <p>Ready to dig in? You can find in-depth documentation for all the features of Grails in the <a
+          href="http://docs.grails.org" target="_blank">User Guide</a>.</p>
+
+      </div>
+
+      <div class="col-md-4">
+        <a href="https://grails-slack.cfapps.io" target="_blank">
+          <img src="../assets/images/slack.svg" alt="Grails Slack" class="float-left"/>
+        </a>
+        <strong class="centered"><a href="https://grails-slack.cfapps.io" target="_blank">Join the
+          Community</a></strong>
+        <p>Get feedback and share your experience with other Grails developers in the community <a
+          href="https://grails-slack.cfapps.io" target="_blank">Slack channel</a>.</p>
+      </div>
+    </div>
 
   </div>
 </template>
@@ -102,20 +130,13 @@ export default {
       msg: 'Welcome to Your Grails & Vue.js App',
       serverInfo: null,
       showLinks: false,
-      serverURL: process.env.SERVER_URL
+      serverURL: process.env.VUE_APP_SERVER_URL
     }
   },
-  methods: {
-    toggleLinks: function () {
-      this.showLinks = !this.$data.showLinks
-    }
-  },
-  created: function () {
+  created () {
     fetch(`${this.$data.serverURL}/application`)
       .then(response => response.json())
-      .then(json => {
-        this.serverInfo = json
-      })
+      .then(json => (this.serverInfo = json))
   }
 }
 </script>
@@ -150,5 +171,15 @@ export default {
     width: 161px;
     margin-right: -161px;
     margin-bottom: 88px;
+  }
+
+  @media only screen and (max-width: 860px) {
+    .plus-logo, .hero-logo  {
+      display: none;
+    }
+  }
+
+  .footer {
+    max-width: 100%!important;
   }
 </style>
